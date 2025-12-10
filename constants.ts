@@ -1,13 +1,17 @@
 import { Chapter } from './types';
 
 // BANCO DE IMAGENS ATMOSFÉRICAS E SEGURAS
-// Apenas texturas e paisagens naturais. Sem pessoas, sem objetos modernos, sem moedas.
 const SAFE_THEMES = {
-  DESERT: "https://images.unsplash.com/photo-1509316975850-ff9c5deb0cd9?q=80&w=1000&auto=format&fit=crop", // Dunas Douradas (Jornada, Egito)
-  STARS: "https://images.unsplash.com/photo-1534234828563-025317353164?q=80&w=1000&auto=format&fit=crop", // Céu Noturno (Sonhos, Espiritualidade)
-  WHEAT: "https://images.unsplash.com/photo-1437252611977-07f74518abd7?q=80&w=1000&auto=format&fit=crop", // Campo de Trigo (Prosperidade, Alimento)
-  STONE: "https://images.unsplash.com/photo-1590053163909-5f28d227a85e?q=80&w=1000&auto=format&fit=crop", // Paredes de Pedra/Templo (Prisão, Palácio, Solidez)
-  PAPER: "https://images.unsplash.com/photo-1586075010923-2dd4570fb338?q=80&w=1000&auto=format&fit=crop"  // Textura de Papel Antigo (Sabedoria, Leis)
+  // Dunas / Deserto Cinematográfico
+  DESERT: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&q=80", 
+  // Céu Estrelado / Via Láctea
+  STARS: "https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?auto=format&fit=crop&q=80", 
+  // Campo de Trigo Dourado
+  WHEAT: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80", 
+  // Muralha de Pedra Antiga
+  STONE: "https://images.unsplash.com/photo-1592504868979-43a99252069e?auto=format&fit=crop&q=80", 
+  // Textura de Papel/Papiro
+  PAPER: "https://images.unsplash.com/photo-1524334228333-0f6db392f8a1?auto=format&fit=crop&q=80"  
 };
 
 interface ChapterContentData {
@@ -25,14 +29,13 @@ interface ChapterContentData {
   action_financial: string;
 }
 
-// CONTEÚDO ÚNICO E PROFUNDO
 const CONTENT_DB: ChapterContentData[] = [
   {
     title: "O Chamado à Grandeza",
     subtitle: "A Eleição Divina, o Favor Paterno e a Túnica da Distinção",
     verse: "Ora, Israel amava a José mais do que a todos os seus filhos, porque era filho da sua velhice; e fez-lhe uma túnica de várias cores.",
     ref: "Gênesis 37:3",
-    img: SAFE_THEMES.PAPER, // Foco na túnica/distinção (usando textura nobre)
+    img: SAFE_THEMES.PAPER, 
     intro: [
       "A narrativa da vida de José não começa com suas virtudes, mas com uma escolha soberana que antecede suas ações. Em Gênesis 37, somos introduzidos a um drama familiar que reflete tensões teológicas profundas. Jacó, agora renomeado Israel, demonstra um afeto desproporcional por José. O texto hebraico utiliza a expressão 'ben zekunim' (filho da velhice), que carrega não apenas um significado cronológico, mas uma conotação de herança espiritual. José era o filho de Raquel, a mulher amada por quem Jacó trabalhou catorze anos, projetando nele todas as expectativas de um amor idealizado.",
       "A 'túnica de várias cores' (ketonet passim) é o símbolo central deste capítulo. Historicamente, traduzir isso apenas como 'colorida' é uma simplificação. O termo original sugere uma túnica longa, com mangas compridas e ornamentadas, estendendo-se até os tornozelos e pulsos. Na cultura do Antigo Oriente Próximo, homens que trabalhavam no campo usavam túnicas curtas para facilitar o movimento. Uma túnica longa era vestimenta de supervisores, nobres ou príncipes que não realizavam trabalho braçal pesado.",
@@ -57,7 +60,7 @@ const CONTENT_DB: ChapterContentData[] = [
     subtitle: "A Revelação do Destino, a Imaturidade do Mensageiro e o Tempo de Deus",
     verse: "Teve José um sonho, que contou a seus irmãos; por isso o odiaram ainda mais. E disse-lhes: Ouvi, peço-vos, este sonho, que tenho sonhado.",
     ref: "Gênesis 37:5-6",
-    img: SAFE_THEMES.STARS, // Céu
+    img: SAFE_THEMES.STARS,
     intro: [
       "Os sonhos de José são o motor profético de toda a narrativa subsequente. No mundo antigo, sonhos eram considerados mensagens diretas do divino, uma intrusão da eternidade no tempo. José tem dois sonhos. O primeiro é agrícola: feixes de trigo se curvando. O segundo é celestial: o sol, a lua e onze estrelas se curvando. Ambos apontam para a mesma realidade: supremacia e governo.",
       "É crucial notar a progressão. O primeiro sonho trata de sustento (trigo), prefigurando o papel econômico que José desempenharia ao salvar o mundo da fome. O segundo sonho trata de autoridade cósmica e familiar, indicando sua posição política e espiritual. Deus estava revelando o 'fim' da história logo no 'início'. No entanto, a revelação do destino não veio acompanhada do manual de instruções sobre como chegar lá.",
@@ -82,7 +85,7 @@ const CONTENT_DB: ChapterContentData[] = [
     subtitle: "A Desconstrução do Ego e o Início do Processo",
     verse: "E aconteceu que, chegando José a seus irmãos, tiraram-lhe a túnica... e lançaram-no na cova; a cova estava vazia, não havia água nela.",
     ref: "Gênesis 37:23-24",
-    img: SAFE_THEMES.STONE, // Poço/Pedra
+    img: SAFE_THEMES.STONE,
     intro: [
       "A jornada de José muda drasticamente de Dotã para o Egito. Enviado pelo pai para checar o bem-estar dos irmãos, José caminha em obediência para uma armadilha. Ao avistá-lo, os irmãos conspiram. A violência da cena é palpável: eles o despem. A túnica, objeto de seu orgulho e da inveja deles, é arrancada brutalmente. Sem a túnica, José é apenas um jovem vulnerável.",
       "O poço (ou cisterna) era um buraco escavado na rocha para armazenar água da chuva. O texto enfatiza: 'não havia água nela'. Se houvesse, ele teria se afogado. Deus permitiu o poço, mas secou a água. É o lugar da contenção, da escuridão e da impotência. José grita (como sabemos mais tarde em Gênesis 42:21), mas eles se sentam para comer pão, ignorando a angústia de sua alma. A frieza dos irmãos é aterrorizante."
@@ -106,7 +109,7 @@ const CONTENT_DB: ChapterContentData[] = [
     subtitle: "A Desumanização, o Valor de Mercado e a Economia da Providência",
     verse: "Passando, pois, os mercadores midianitas, tiraram e alçaram a José da cova, e venderam José por vinte moedas de prata aos ismaelitas.",
     ref: "Gênesis 37:28",
-    img: SAFE_THEMES.DESERT, // Caminho do deserto, nada de moedas modernas
+    img: SAFE_THEMES.DESERT, 
     intro: [
       "José é içado da cova apenas para ser acorrentado. A transação comercial é fria e calculista. Vinte moedas de prata era o preço médio de um escravo naquela época (conforme o Código de Hamurabi e registros bíblicos em Levítico). O filho amado, que valia tudo para o pai, agora é precificado como uma ferramenta de trabalho barata. Ele se torna um ativo no balanço patrimonial de uma caravana de especiarias.",
       "Imagine a caminhada rumo ao Egito. José, amarrado atrás de camelos, vendo as colinas de Canaã desaparecerem. Ele passa de herdeiro a mercadoria. A desumanização é total. Ele perdeu seu nome, sua herança, sua língua e sua liberdade. Mas ele levava consigo algo que ninguém podia comprar ou vender: a presença de Deus e os sonhos que estavam gravados em seu espírito."
@@ -130,7 +133,7 @@ const CONTENT_DB: ChapterContentData[] = [
     subtitle: "A Mordomia Radical e a Prosperidade no Lugar Errado",
     verse: "O Senhor estava com José, e foi homem próspero; e estava na casa de seu senhor egípcio... Potifar viu que o Senhor era com ele.",
     ref: "Gênesis 39:2-3",
-    img: SAFE_THEMES.STONE, // Arquitetura sólida
+    img: SAFE_THEMES.STONE,
     intro: [
       "José chega ao epicentro da civilização antiga: o Egito. Ele é comprado por Potifar, capitão da guarda, um oficial de alta patente (possivelmente chefe da segurança pessoal do Faraó ou chefe dos executores). De repente, o jovem pastor hebreu está dentro de uma complexa mansão egípcia, cheia de novos idiomas, deuses estranhos e tecnologias administrativas avançadas.",
       "O texto bíblico faz uma afirmação chocante: 'José foi homem próspero'. Como um escravo pode ser próspero? Ele não possuía nada, nem mesmo o próprio corpo. Aqui, a Bíblia redefine prosperidade. Prosperidade não é acúmulo de bens, é a presença dinâmica de Deus gerando eficácia em tudo o que se faz. José não ficou amargurado, não entrou em greve, nem sabotou o patrão. Ele decidiu ser o melhor escravo que o Egito já viu.",
@@ -153,7 +156,6 @@ const CONTENT_DB: ChapterContentData[] = [
   }
 ];
 
-// Gerador robusto usando APENAS AS IMAGENS SEGURAS
 const generateRemainingChapters = (): ChapterContentData[] => {
   const titlesAndThemes = [
     { t: "A Tentação Sexual", s: "A Batalha pela Integridade Íntima", v: "Como, pois, faria eu este grande mal, e pecaria contra Deus?", r: "Gn 39:9", i: SAFE_THEMES.STONE },
