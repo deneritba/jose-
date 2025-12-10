@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Sabedoria de José - 50 Lições de Prosperidade</title>
+    <meta name="theme-color" content="#3e2723" />
+    <meta name="description" content="50 Lições de Prosperidade e Fé baseadas em Gênesis 37. App PWA Offline." />
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              jose: {
+                bg: '#f4f1ea', // Papyrus/Cream
+                dark: '#2c1810', // Deep Leather Brown
+                primary: '#5d4037', // Clay Brown
+                gold: '#d4af37', // Muted Gold
+                accent: '#8d6e63', // Soft Brown
+                light: '#efebe9', // Light Beige
+                highlight: '#fff8e1', // Soft Yellow for text
+              }
+            },
+            fontFamily: {
+              serif: ['Merriweather', 'serif'],
+              display: ['Cinzel', 'serif'],
+              sans: ['Lato', 'sans-serif'],
+            }
+          }
+        }
+      }
+    </script>
+    <link rel="manifest" href="/manifest.json">
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.1/",
+    "react/": "https://aistudiocdn.com/react@^19.2.1/",
+    "react": "https://aistudiocdn.com/react@^19.2.1"
+  }
+}
+</script>
+</head>
+  <body class="bg-[#f4f1ea] text-[#2c1810] antialiased">
+    <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/service-worker.js')
+            .then(reg => console.log('SW registered!', reg))
+            .catch(err => console.log('SW failed', err));
+        });
+      }
+    </script>
+  </body>
+</html>
