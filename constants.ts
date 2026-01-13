@@ -19,11 +19,11 @@ const generateHyperRobustChapters = (): Chapter[] => {
       subtitle: "Marca Pessoal, Identidade e o Peso da Diferenciação",
       verse: "Ora, Israel amava a José mais do que a todos os seus filhos... e fez-lhe uma túnica de várias cores.",
       ref: "Gênesis 37:3",
-      img: SAFE_THEMES.PAPIRO,
+      img: "https://zygyapadihekebhhbges.supabase.co/storage/v1/object/sign/jose%20do%20egito/crie_uma_imagem_ilustrativa_em_estilo_b_blico.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85NDUyOTA3Yi0zMWRmLTQ2ZTMtOTA4NS03OGQ4MjdmYmIyMmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJqb3NlIGRvIGVnaXRvL2NyaWVfdW1hX2ltYWdlbV9pbHVzdHJhdGl2YV9lbV9lc3RpbG9fYl9ibGljby5qcGVnIiwiaWF0IjoxNzY4MzQ3NTE4LCJleHAiOjE5MjYwMjc1MTh9.WqR8rGsuW6QG54926BHqG8vuceuzoWRNccoxV1_MSEA",
       intro: "A túnica de José não era apenas um agasalho; no hebraico 'ketonet passim', ela simbolizava uma vestimenta de realeza ou de alguém que não exercia trabalho braçal. Ao entregar essa túnica, Jacó não estava apenas dando um presente, estava alterando a hierarquia sucessória da maior família daquela região. Este capítulo analisa como a sua 'túnica' (sua marca e propósito) pode ser o gatilho tanto para o seu sucesso quanto para a perseguição que você enfrentará.",
       theology: "No plano teológico, a túnica representa a eleição soberana. Assim como Cristo foi revestido de glória, José foi revestido de um favor que ele não comprou, mas recebeu. Estudiosos sugerem que as 'várias cores' indicavam uma técnica de tecelagem complexa disponível apenas para a elite de Canaã. Isso nos ensina que o favor de Deus muitas vezes nos coloca em evidência antes mesmo de estarmos prontos para o palco, exigindo uma maturidade emocional que José ainda estava por desenvolver.",
       management: "Sob a ótica da gestão, a túnica é o que chamamos hoje de 'Unique Selling Proposition' (Proposta Única de Valor). Se você é igual a todos, você é uma commodity. José foi diferenciado pela marca que seu pai lhe impôs. A lição aqui é sobre 'Gestão de Stakeholders': Jacó falhou ao não comunicar a estratégia por trás da escolha, gerando um clima organizacional tóxico entre os irmãos. Para líderes, o favoritismo sem meritocracia clara é o veneno que destrói equipes.",
-      finance: "No âmbito financeiro, a túnica representa o Ativo Intangível. Sua reputação e sua aparência de competência são ativos que abrem portas antes do seu capital entrar. Investir na sua apresentação e na sua educação (sua túnica intelectual) é o investimento com o maior ROI (Retorno sobre Investimento) possível. José começou sua jornada com um ativo que não podia ser roubado: a consciência de quem ele era.",
+      finance: "No âmbito financeiro, a túnica representa o Ativo Intangível. Sua reputação e sua aparência de competência são ativos que abrem portas antes do seu capital entrar. Investir na sua apresentação e na sua educação (sua túnica intelectual) é o investimento com o maior ROI (Retorno sobre Investimento) possível. José começou sua jornada com um ativo que não podia ser roupado: a consciência de quem ele era.",
       lesson: "Nunca diminua o brilho da sua túnica para que os outros não se sintam ofuscados. Aprenda, no entanto, a circular entre os que não têm a mesma vestimenta sem parecer arrogante. A verdadeira liderança é carregar a distinção com a humildade de um servo. Se você está sendo perseguido hoje, verifique se não é porque sua 'túnica' está brilhando demais para olhos medíocres.",
       spiritual: "Hoje, identifique três áreas onde Deus te deu um favor 'não merecido'. Agradeça por elas e peça sabedoria para não usar esses dons para humilhar o próximo.",
       financialAction: "Analise sua imagem profissional. Ela comunica autoridade ou desleixo? Reserve um valor este mês para investir em um livro ou curso que eleve seu status técnico.",
@@ -42,7 +42,7 @@ const generateHyperRobustChapters = (): Chapter[] => {
       lesson: "A distância entre o seu sonho e a sua realidade é chamada de 'Processo'. O erro de José foi achar que o sonho era para o dia seguinte. Sonhos grandes exigem preparações grandes. Se o seu sonho assusta as pessoas ao seu redor, talvez ele seja grande o suficiente. O segredo é ter a visão de um gigante, mas a disciplina de um servo.",
       spiritual: "Peça a Deus que Ele restaure sua capacidade de sonhar. Anote tudo o que vier ao seu coração, mesmo que pareça impossível agora.",
       financialAction: "Defina sua meta de liberdade financeira. Qual é o 'molho de trigo' que você vai plantar hoje para colher daqui a 5 ou 10 anos?",
-      prayer: "Senhor da Glória, obrigado por expandir minha visão. Retira as escamas dos meus olhos para que eu enxergue as oportunidades que o mundo ignora. Dá-me a prudência de José para saber com quem compartilhar meus planos e a fé inabalável para não desistir quando a realidade parecer contrária ao sonho. Eu decido crer na Tua palavra acima das circunstâncias. Amém."
+      prayer: "Senior da Glória, obrigado por expandir minha visão. Retira as escamas dos meus olhos para que eu enxergue as oportunidades que o mundo ignora. Dá-me a prudência de José para saber com quem compartilhar meus planos e a fé inabalável para não desistir quando a realidade parecer contrária ao sonho. Eu decido crer na Tua palavra acima das circunstâncias. Amém."
     },
     {
       title: "O Vale da Sombra e da Traição",
@@ -61,7 +61,6 @@ const generateHyperRobustChapters = (): Chapter[] => {
     }
   ];
 
-  // Loop para criar 50 capítulos mantendo a alta densidade
   for (let i = 1; i <= 50; i++) {
     const isDetailed = i <= baseDetailedChapters.length;
     let content;
@@ -69,7 +68,6 @@ const generateHyperRobustChapters = (): Chapter[] => {
     if (isDetailed) {
       content = baseDetailedChapters[i-1];
     } else {
-      // Gerador de temas complexos para os demais capítulos
       const themes = [
         { t: "A Logística da Escravidão", s: "Adaptabilidade e Aprendizado em Ambientes Restritos", r: "37:28" },
         { t: "O Imposto do Egito", s: "Compreendendo Sistemas Econômicos Estrangeiros", r: "39:1" },
