@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { CHAPTERS } from './constants';
 import { ViewState } from './types';
@@ -10,13 +11,11 @@ function App() {
   const [readChapters, setReadChapters] = useState<number[]>([]);
 
   useEffect(() => {
-    // PWA Install Prompt Listener
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       setInstallPrompt(e);
     });
 
-    // Load progress
     const saved = localStorage.getItem('jose-progress');
     if (saved) {
       setReadChapters(JSON.parse(saved));
@@ -35,106 +34,95 @@ function App() {
     if (installPrompt) {
       installPrompt.prompt();
       installPrompt.userChoice.then((choiceResult: any) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the install prompt');
-        }
         setInstallPrompt(null);
       });
     }
   };
 
   const renderHome = () => (
-    <div className="min-h-screen bg-jose-dark relative overflow-hidden flex flex-col items-center justify-center text-center px-4">
-      {/* Background Effect */}
-      <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
-      <div className="absolute inset-0 bg-gradient-to-b from-jose-dark/90 via-jose-dark/80 to-jose-dark z-0"></div>
-      {/* Imagem de Fundo Corrigida: Egito Antigo/Pirâmides Dramáticas */}
-      <img src="https://images.unsplash.com/photo-1599668045963-c35d4872cb04?auto=format&fit=crop&w=1000&q=80" className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30 z-0" alt="Background Egito" />
+    <div className="min-h-screen bg-jose-dark relative overflow-hidden flex flex-col items-center justify-center text-center px-6">
+      <div className="absolute inset-0 z-0 opacity-20 bg-[url('https://www.transparenttextures.com/patterns/asfalt-dark.png')]"></div>
+      <img src="https://images.unsplash.com/photo-1599668045963-c35d4872cb04?auto=format&fit=crop&w=1000&q=80" className="absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-30 z-0" alt="Background" />
 
-      <div className="z-10 relative max-w-lg w-full">
-        <div className="mb-6 inline-block border border-jose-gold/50 rounded-full px-4 py-1">
-          <span className="text-jose-gold text-xs uppercase tracking-[0.2em] font-bold">Edição Definitiva</span>
+      <div className="z-10 relative max-w-lg w-full flex flex-col items-center">
+        <div className="mb-8 border border-jose-gold/30 rounded-full px-5 py-1.5 backdrop-blur-sm">
+          <span className="text-jose-gold text-[10px] md:text-xs uppercase tracking-[0.3em] font-bold">Mestrado em Prosperidade</span>
         </div>
         
-        <h1 className="text-5xl md:text-7xl font-display text-[#f4f1ea] mb-2 drop-shadow-2xl">
-          A Sabedoria <br /> <span className="text-jose-gold italic font-serif">de José</span>
+        <h1 className="text-4xl md:text-7xl font-display text-white mb-4 leading-tight">
+          A SABEDORIA <br /> <span className="text-jose-gold italic font-serif">DE JOSÉ</span>
         </h1>
         
-        <div className="w-24 h-1 bg-jose-gold mx-auto my-6"></div>
+        <div className="w-16 h-[2px] bg-jose-gold mb-8"></div>
         
-        <p className="text-lg text-jose-light/80 font-sans mb-10 leading-relaxed">
-          50 Lições de Prosperidade, Gestão e Fé <br /> baseadas na vida do Governador do Egito.
+        <p className="text-base md:text-lg text-jose-light/70 font-serif italic mb-12 leading-relaxed max-w-sm">
+          "Onde a fé encontra a gestão e a providência forja o governador."
         </p>
 
-        <div className="space-y-4">
+        <div className="w-full space-y-4 max-w-xs">
           <button 
             onClick={() => setView('LIST')}
-            className="w-full bg-gradient-to-r from-jose-gold to-[#bcaaa4] text-jose-dark font-bold text-lg py-4 px-8 rounded-lg shadow-lg hover:scale-105 transition-transform uppercase tracking-wider"
+            className="w-full bg-jose-gold text-jose-dark font-display font-bold text-sm py-5 rounded-sm shadow-2xl hover:brightness-110 active:scale-95 transition-all uppercase tracking-widest"
           >
-            Iniciar Leitura
+            Começar Imersão
           </button>
           
           {installPrompt && (
             <button 
               onClick={handleInstall}
-              className="w-full bg-transparent border border-jose-light/30 text-jose-light hover:bg-white/10 font-medium text-sm py-3 px-8 rounded-lg transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-white/5 border border-white/10 text-white/60 hover:text-white font-display text-[10px] py-3 rounded-sm transition-all uppercase tracking-widest"
             >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-5 h-5">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-              </svg>
-              Instalar App
+              Instalar Aplicativo
             </button>
           )}
         </div>
-
-        <p className="mt-8 text-xs text-jose-light/40 font-mono">Baseado em Gênesis 37-50</p>
       </div>
     </div>
   );
 
   const renderList = () => (
-    <div className="min-h-screen bg-[#f4f1ea]">
-      <header className="sticky top-0 z-20 bg-jose-dark text-[#f4f1ea] px-6 py-4 shadow-md flex justify-between items-center">
-        <h2 className="font-display font-bold text-xl cursor-pointer" onClick={() => setView('HOME')}>José do Egito</h2>
-        <div className="text-xs uppercase tracking-widest text-jose-gold">Índice</div>
+    <div className="min-h-screen bg-[#f4f1ea] pb-20">
+      <header className="sticky top-0 z-20 bg-jose-dark/95 backdrop-blur-md text-[#f4f1ea] px-6 py-5 shadow-lg flex justify-between items-center">
+        <h2 className="font-display font-bold text-sm tracking-widest cursor-pointer uppercase" onClick={() => setView('HOME')}>A Sabedoria de José</h2>
+        <div className="h-1.5 w-24 bg-white/10 rounded-full overflow-hidden">
+          <div className="bg-jose-gold h-full" style={{ width: `${(readChapters.length / 50) * 100}%` }}></div>
+        </div>
       </header>
 
-      <div className="p-6 pb-20 max-w-3xl mx-auto space-y-4">
-        <div className="text-center py-6">
-          <h3 className="text-3xl font-display text-jose-dark">Sua Jornada</h3>
-          <p className="text-jose-primary italic mt-2">Selecione um capítulo para começar</p>
-          <div className="mt-4 w-full bg-gray-200 rounded-full h-2.5 dark:bg-gray-700">
-            <div className="bg-jose-gold h-2.5 rounded-full" style={{ width: `${(readChapters.length / 50) * 100}%` }}></div>
-          </div>
-          <p className="text-xs text-right mt-1 text-gray-500">{readChapters.length} / 50 Concluídos</p>
+      <div className="p-6 max-w-2xl mx-auto space-y-6">
+        <div className="text-center py-10">
+          <h3 className="text-3xl font-display text-jose-dark uppercase tracking-tighter">Sumário de Estudos</h3>
+          <p className="text-jose-primary italic mt-2 text-sm">Desenvolva a mentalidade de governo</p>
         </div>
 
-        {CHAPTERS.map((chapter, idx) => {
-          const isRead = readChapters.includes(chapter.id);
-          return (
-            <div 
-              key={chapter.id}
-              onClick={() => {
-                setCurrentChapterIndex(idx);
-                setView('READING');
-              }}
-              className={`relative bg-white p-5 rounded-lg shadow-sm border-l-4 cursor-pointer hover:shadow-md transition-all group ${isRead ? 'border-green-500 opacity-80' : 'border-jose-gold'}`}
-            >
-              <div className="flex justify-between items-start">
+        <div className="grid gap-4">
+          {CHAPTERS.map((chapter, idx) => {
+            const isRead = readChapters.includes(chapter.id);
+            return (
+              <div 
+                key={chapter.id}
+                onClick={() => {
+                  setCurrentChapterIndex(idx);
+                  setView('READING');
+                }}
+                className={`group relative bg-white p-6 rounded-sm shadow-sm border-l-[3px] cursor-pointer hover:shadow-md transition-all flex items-center gap-6 ${isRead ? 'border-green-800' : 'border-jose-gold'}`}
+              >
+                <div className={`text-2xl font-display font-bold ${isRead ? 'text-green-800' : 'text-jose-gold/40'}`}>
+                  {chapter.id.toString().padStart(2, '0')}
+                </div>
                 <div className="flex-1">
-                  <span className={`text-xs font-bold uppercase tracking-wider mb-1 block ${isRead ? 'text-green-600' : 'text-gray-400'}`}>
-                    {isRead ? 'Lido/Concluído' : `Capítulo ${chapter.id}`}
-                  </span>
-                  <h4 className="text-xl font-serif text-jose-dark group-hover:text-jose-primary transition-colors">{chapter.title}</h4>
-                  <p className="text-sm text-gray-500 mt-1 font-sans">{chapter.subtitle}</p>
+                  <h4 className="text-lg font-display text-jose-dark leading-snug group-hover:text-jose-primary transition-colors">{chapter.title}</h4>
+                  <p className="text-xs text-jose-primary/60 mt-1 font-serif italic truncate max-w-[200px] md:max-w-md">{chapter.subtitle}</p>
                 </div>
-                <div className="ml-4 flex items-center justify-center h-10 w-10 rounded-full bg-jose-bg text-jose-primary font-bold font-serif shadow-inner">
-                  {chapter.id}
-                </div>
+                {isRead && (
+                  <div className="text-green-800">
+                    <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" /></svg>
+                  </div>
+                )}
               </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </div>
   );
