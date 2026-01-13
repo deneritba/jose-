@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Chapter, ContentSection } from '../types';
 
@@ -14,7 +15,7 @@ const RenderSection: React.FC<{ section: ContentSection, index: number }> = ({ s
   const renderContent = (content: string | string[], className: string) => {
     if (Array.isArray(content)) {
       return content.map((paragraph, i) => (
-        <p key={i} className={`${className} mb-6`}>
+        <p key={i} className={`${className} mb-6 last:mb-0`}>
           {paragraph}
         </p>
       ));
@@ -25,66 +26,52 @@ const RenderSection: React.FC<{ section: ContentSection, index: number }> = ({ s
   switch (section.type) {
     case 'paragraph':
       return (
-        <div className={`mb-8 text-lg md:text-xl leading-loose text-jose-dark font-serif text-justify tracking-normal`}>
-           {index === 0 && !Array.isArray(section.content) ? (
-             <p className="text-lg md:text-xl leading-loose text-jose-dark font-serif text-justify tracking-normal">
-               <span className="float-left text-7xl font-display text-jose-primary mr-3 mt-[-10px] line-clamp-2">
-                 {(section.content as string).charAt(0)}
+        <div className={`mb-10 text-lg md:text-xl leading-relaxed text-jose-dark font-serif text-justify opacity-90`}>
+           {index === 0 && typeof section.content === 'string' ? (
+             <p>
+               <span className="float-left text-8xl font-display text-jose-primary mr-4 mt-2 line-height-1">
+                 {section.content.charAt(0)}
                </span>
-               {(section.content as string).slice(1)}
+               {section.content.slice(1)}
              </p>
            ) : (
-             renderContent(section.content, "text-lg md:text-xl leading-loose text-jose-dark font-serif text-justify tracking-normal")
+             renderContent(section.content, "")
            )}
-        </div>
-      );
-    case 'quote':
-      return (
-        <div className="my-10 relative px-6 py-8 bg-[#f9f7f2] border-l-4 border-jose-gold mx-2 md:mx-6 shadow-sm">
-          <p className="text-xl md:text-2xl font-display text-jose-primary text-center leading-relaxed italic">
-            "{section.content}"
-          </p>
-        </div>
-      );
-    case 'highlight':
-      return (
-        <div className="my-8 p-6 bg-gradient-to-r from-[#fff8e1] to-transparent border-l-[3px] border-jose-gold rounded-r-md">
-          <h5 className="text-xs font-bold uppercase tracking-widest text-jose-gold mb-2 flex items-center gap-2">
-            ♦ Insight Teológico
-          </h5>
-          <div className="font-serif font-medium text-jose-dark text-lg italic leading-relaxed">
-             {renderContent(section.content, "")}
-          </div>
-        </div>
-      );
-    case 'lesson-box':
-      return (
-        <div className="my-10 p-8 bg-[#2c1810] text-[#f4f1ea] rounded-sm shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-1 bg-jose-gold opacity-50"></div>
-          <h4 className="text-sm font-display font-bold uppercase tracking-[0.2em] text-jose-gold mb-4 text-center border-b border-white/10 pb-4">
-            Princípio de Gestão & Sabedoria
-          </h4>
-          <div className="text-lg font-serif leading-relaxed opacity-95 text-justify">
-             {renderContent(section.content, "")}
-          </div>
         </div>
       );
     case 'subtitle':
       return (
-        <h3 className="text-2xl font-display font-bold text-jose-dark mt-12 mb-6 border-b border-jose-gold/20 pb-2">
+        <h3 className="text-2xl md:text-3xl font-display font-bold text-jose-primary mt-16 mb-8 border-b-2 border-jose-gold/30 pb-2 inline-block">
           {section.content}
         </h3>
       );
+    case 'highlight':
+      return (
+        <div className="my-12 p-10 bg-gradient-to-br from-[#fff9c4]/30 to-transparent border-l-8 border-jose-gold italic font-serif text-2xl text-jose-dark shadow-sm">
+           "{section.content}"
+        </div>
+      );
+    case 'lesson-box':
+      return (
+        <div className="my-12 p-10 bg-jose-dark text-[#f4f1ea] rounded-sm shadow-2xl border-t-4 border-jose-gold relative overflow-hidden">
+          <div className="absolute top-0 right-0 p-2 opacity-10">
+            <svg className="w-20 h-20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L1 21h22L12 2zm0 3.45l8.1 14.1H3.9L12 5.45zM11 16h2v2h-2v-2zm0-7h2v5h-2V9z"/></svg>
+          </div>
+          <div className="text-xl md:text-2xl font-serif leading-loose italic text-justify opacity-90 relative z-10">
+             {renderContent(section.content, "")}
+          </div>
+        </div>
+      );
     case 'list':
       return (
-        <ul className="mb-8 ml-4 md:ml-8 space-y-4 border-l border-jose-gold/30 pl-6">
+        <div className="space-y-8 my-10">
           {(section.content as string[]).map((item, i) => (
-            <li key={i} className="flex items-start gap-4 text-lg text-jose-dark font-serif">
-              <span className="text-jose-gold text-xl mt-[-2px]">❧</span>
-              <span className="leading-relaxed">{item}</span>
-            </li>
+            <div key={i} className="flex gap-6 items-start bg-white p-6 rounded-sm border-l-4 border-jose-gold shadow-sm">
+              <span className="text-jose-gold text-2xl mt-1">✦</span>
+              <p className="font-serif text-xl text-jose-dark leading-relaxed">{item}</p>
+            </div>
           ))}
-        </ul>
+        </div>
       );
     default:
       return null;
@@ -93,131 +80,111 @@ const RenderSection: React.FC<{ section: ContentSection, index: number }> = ({ s
 
 export const ChapterView: React.FC<ChapterViewProps> = ({ chapter, onNext, onPrev, hasPrev, hasNext, onBack }) => {
   React.useEffect(() => {
-    window.scrollTo(0, 0);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [chapter.id]);
 
   return (
-    <div className="min-h-screen pb-24 fade-in bg-[#f4f1ea] selection:bg-jose-gold/30 selection:text-jose-dark">
-      {/* Cinematic Hero - Simplified to ensure stability and style */}
-      <div className="relative h-[50vh] md:h-[60vh] w-full overflow-hidden bg-jose-dark shadow-2xl">
+    <div className="min-h-screen pb-40 bg-[#f4f1ea] selection:bg-jose-gold/30">
+      {/* Hero Section Master */}
+      <div className="relative h-[80vh] w-full overflow-hidden">
         <img 
           src={chapter.image} 
           alt={chapter.title} 
-          className="w-full h-full object-cover opacity-90 sepia-[.3] contrast-125"
+          className="w-full h-full object-cover grayscale-[0.1] contrast-110 scale-105"
         />
-        
-        <div className="absolute inset-0 bg-gradient-to-t from-[#f4f1ea] via-transparent to-black/40 z-10"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-[#f4f1ea] via-[#f4f1ea]/40 to-black/70"></div>
         
         <button 
           onClick={onBack}
-          className="absolute top-6 left-6 z-50 p-3 rounded-full bg-black/30 backdrop-blur text-white hover:bg-jose-gold/80 transition-all"
+          className="absolute top-10 left-10 z-50 flex items-center gap-3 text-white font-display text-sm tracking-[0.3em] hover:text-jose-gold transition-all group"
         >
-           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18" />
-            </svg>
+          <span className="group-hover:-translate-x-2 transition-transform">←</span> 
+          ÍNDICE DE ESTUDOS
         </button>
 
-        <div className="absolute bottom-0 left-0 w-full p-6 md:p-12 z-20">
-          <div className="max-w-4xl mx-auto text-center">
-            <span className="font-display font-bold tracking-[0.3em] text-jose-gold text-xs uppercase mb-3 block animate-slide-up">
-              Capítulo {chapter.id}
+        <div className="absolute bottom-20 left-0 w-full px-6 md:px-20 text-center md:text-left">
+          <div className="max-w-5xl mx-auto">
+            <span className="text-jose-gold font-display font-bold tracking-[0.5em] text-sm md:text-base uppercase mb-6 block drop-shadow-lg">
+              Mestrado em Sabedoria Bíblica • Cap. {chapter.id}
             </span>
-            <h1 className="text-4xl md:text-6xl font-display text-jose-dark mb-4 drop-shadow-sm leading-tight animate-slide-up animation-delay-100 bg-[#f4f1ea]/90 inline-block px-6 py-2 rounded-sm backdrop-blur-sm">
+            <h1 className="text-5xl md:text-8xl font-display text-jose-dark mb-6 leading-tight drop-shadow-sm uppercase">
               {chapter.title}
             </h1>
-            <p className="text-lg md:text-xl font-serif italic text-jose-dark font-medium mt-2 animate-slide-up animation-delay-200">
+            <p className="text-xl md:text-3xl font-serif italic text-jose-primary max-w-3xl border-l-4 border-jose-gold pl-6 py-2">
               {chapter.subtitle}
             </p>
           </div>
         </div>
       </div>
 
-      <div className="max-w-3xl mx-auto px-6 md:px-8 -mt-8 relative z-30">
-        
-        {/* Bible Verse Block */}
-        <div className="bg-white p-8 md:p-12 shadow-xl border-t-4 border-jose-primary mb-12">
-          <p className="text-center font-serif text-xl md:text-2xl text-jose-dark leading-relaxed mb-4">
+      <div className="max-w-5xl mx-auto px-6 -mt-20 relative z-10">
+        {/* Bloco de Versículo Premium */}
+        <div className="bg-white p-12 md:p-24 shadow-2xl border-t-[12px] border-jose-dark text-center mb-24 rounded-b-sm relative">
+          <div className="absolute -top-6 left-1/2 -translate-x-1/2 bg-jose-gold text-jose-dark px-8 py-2 font-display font-bold text-xs tracking-widest shadow-lg">
+            A ESCRITURA SÁBIA
+          </div>
+          <p className="text-3xl md:text-4xl font-serif text-jose-dark leading-[1.6] italic mb-10 opacity-90">
             "{chapter.verse}"
           </p>
-          <div className="flex items-center justify-center gap-3">
-             <span className="h-[1px] w-8 bg-jose-gold"></span>
-             <p className="text-center text-jose-primary font-display font-bold text-sm uppercase tracking-widest">
-                {chapter.verseReference}
-             </p>
-             <span className="h-[1px] w-8 bg-jose-gold"></span>
+          <div className="flex items-center justify-center gap-4 mb-2">
+            <div className="w-12 h-[1px] bg-jose-gold"></div>
+            <p className="text-jose-primary font-display font-bold tracking-[0.4em] text-lg uppercase">
+              {chapter.verseReference}
+            </p>
+            <div className="w-12 h-[1px] bg-jose-gold"></div>
           </div>
         </div>
 
-        {/* Content Body */}
-        <article className="mb-20">
-           {chapter.sections.map((section, index) => (
-             <RenderSection key={index} section={section} index={index} />
-           ))}
-        </article>
-
-        <div className="flex items-center justify-center mb-16 opacity-30">
-           <img src="https://cdn-icons-png.flaticon.com/512/44/44627.png" alt="divider" className="h-6 w-auto grayscale" />
+        {/* Conteúdo do Estudo Denso */}
+        <div className="space-y-4">
+          {chapter.sections.map((section, idx) => (
+            <RenderSection key={idx} section={section} index={idx} />
+          ))}
         </div>
 
-        {/* Deep Application Section */}
-        <div className="bg-[#fffbf0] border border-jose-gold/30 p-8 md:p-10 rounded-lg shadow-inner mb-12">
-            <h3 className="font-display text-2xl text-jose-dark mb-6 text-center">Aplicação Profunda</h3>
-            
-            <div className="space-y-8">
-                <div>
-                    <h4 className="font-bold text-jose-primary uppercase tracking-wide text-sm mb-3 border-b border-jose-gold/20 pb-2 inline-block">Vida Espiritual</h4>
-                    <p className="text-lg leading-relaxed font-serif text-jose-dark/90 text-justify">
-                        {chapter.action.spiritual}
-                    </p>
-                </div>
-                
-                <div>
-                    <h4 className="font-bold text-jose-primary uppercase tracking-wide text-sm mb-3 border-b border-jose-gold/20 pb-2 inline-block">Vida Financeira & Profissional</h4>
-                    <p className="text-lg leading-relaxed font-serif text-jose-dark/90 text-justify">
-                        {chapter.action.financial}
-                    </p>
-                </div>
-            </div>
+        {/* Seção de Oração Profunda */}
+        <div className="mt-32 p-16 md:p-24 bg-jose-dark text-white rounded-sm shadow-2xl relative overflow-hidden group">
+           <div className="absolute top-0 right-0 w-64 h-64 bg-jose-gold/5 rounded-full -mr-32 -mt-32 group-hover:scale-110 transition-transform duration-1000"></div>
+           <div className="absolute bottom-0 left-0 w-64 h-64 bg-jose-primary/20 rounded-full -ml-32 -mb-32"></div>
+           
+           <div className="relative z-10 text-center">
+             <span className="text-jose-gold font-display text-5xl mb-10 block">🙏</span>
+             <h4 className="font-display text-2xl tracking-[0.4em] mb-10 text-jose-gold uppercase">Consagração Profética</h4>
+             <p className="text-2xl md:text-4xl font-serif italic leading-[1.8] text-jose-light max-w-4xl mx-auto opacity-90">
+               "{chapter.prayer}"
+             </p>
+           </div>
         </div>
 
-        {/* Prayer */}
-        <div className="text-center max-w-2xl mx-auto mb-20 px-6">
-          <span className="text-4xl text-jose-gold/40 mb-4 block">🙏</span>
-          <p className="font-serif italic text-xl text-jose-dark leading-loose">
-            "{chapter.prayer}"
-          </p>
-        </div>
+        {/* Navegação Inferior de Luxo */}
+        <div className="mt-32 flex flex-col md:flex-row justify-between items-center gap-12 border-t border-jose-dark/20 pt-16">
+           <button 
+             onClick={onPrev} 
+             disabled={!hasPrev}
+             className={`group flex flex-col items-start gap-2 ${!hasPrev ? 'opacity-0' : 'hover:-translate-x-2'} transition-all`}
+           >
+             <span className="text-jose-gold font-display text-xs tracking-widest uppercase">Anterior</span>
+             <span className="text-jose-primary font-display font-bold text-xl">← CAPÍTULO {chapter.id - 1}</span>
+           </button>
+           
+           <div className="flex flex-col items-center flex-1 max-w-xs w-full">
+              <span className="text-[10px] font-display text-jose-primary tracking-[0.6em] uppercase mb-3 opacity-60">Progresso da Imersão</span>
+              <div className="w-full h-[2px] bg-gray-200 relative">
+                 <div className="bg-jose-gold h-full transition-all duration-1000 ease-out shadow-[0_0_10px_rgba(212,175,55,0.8)]" style={{ width: `${(chapter.id / 50) * 100}%` }}></div>
+              </div>
+              <span className="mt-3 font-display text-sm tracking-widest text-jose-gold font-bold">{chapter.id} / 50</span>
+           </div>
 
-        {/* Desktop Nav */}
-        <div className="hidden md:flex justify-between items-center mb-24 gap-6 pt-10 border-t border-jose-dark/10">
-            <button 
-                onClick={onPrev}
-                disabled={!hasPrev}
-                className={`px-8 py-3 text-sm font-bold uppercase tracking-widest transition-all ${!hasPrev ? 'opacity-0' : 'hover:text-jose-primary text-jose-dark/60'}`}
-            >
-                ← Anterior
-            </button>
-             <button 
-                onClick={onNext}
-                disabled={!hasNext}
-                className={`px-10 py-4 bg-jose-dark text-[#f4f1ea] font-bold uppercase tracking-widest shadow-lg hover:bg-jose-primary transition-all rounded-sm`}
-            >
-                {hasNext ? 'Próximo Capítulo' : 'Concluir'} →
-            </button>
-        </div>
-
-        {/* Mobile Nav Footer */}
-        <div className="fixed bottom-0 left-0 w-full bg-[#f4f1ea]/95 backdrop-blur-md border-t border-jose-dark/10 p-4 z-50 flex justify-between items-center md:hidden shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]">
-             <button onClick={onPrev} disabled={!hasPrev} className={`p-3 ${!hasPrev ? 'opacity-20' : 'text-jose-dark'}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" /></svg>
-             </button>
-             <div className="flex flex-col items-center">
-                <span className="font-display text-xs font-bold text-jose-gold uppercase tracking-widest">Capítulo</span>
-                <span className="font-serif text-xl font-bold text-jose-dark">{chapter.id}</span>
-             </div>
-             <button onClick={onNext} disabled={!hasNext} className={`p-3 ${!hasNext ? 'opacity-20' : 'text-jose-dark'}`}>
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6"><path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" /></svg>
-             </button>
+           <button 
+             onClick={onNext} 
+             disabled={!hasNext}
+             className={`group flex flex-col items-end gap-2 bg-jose-primary hover:bg-jose-dark text-white px-12 py-6 rounded-sm transition-all shadow-2xl ${!hasNext ? 'opacity-50' : 'hover:scale-105'}`}
+           >
+             <span className="text-jose-gold font-display text-xs tracking-widest uppercase">Próximo Nível</span>
+             <span className="font-display font-bold text-xl flex items-center gap-3">
+               {hasNext ? `CAPÍTULO ${chapter.id + 1}` : 'FINALE'} <span>→</span>
+             </span>
+           </button>
         </div>
       </div>
     </div>

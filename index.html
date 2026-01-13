@@ -1,18 +1,16 @@
+
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>A Sabedoria de José - 50 Lições de Prosperidade</title>
-    <meta name="theme-color" content="#3e2723" />
-    <meta name="description" content="50 Lições de Prosperidade e Fé baseadas em Gênesis 37. App PWA Offline." />
+    <title>A Sabedoria de José - Edição de Colecionador</title>
+    <meta name="theme-color" content="#2c1810" />
     
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap" rel="stylesheet">
     
-    <!-- Tailwind CSS (Script para desenvolvimento rápido) -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -20,50 +18,35 @@
           extend: {
             colors: {
               jose: {
-                bg: '#f4f1ea', // Papyrus/Cream
-                dark: '#2c1810', // Deep Leather Brown
-                primary: '#5d4037', // Clay Brown
-                gold: '#d4af37', // Muted Gold
-                accent: '#8d6e63', // Soft Brown
-                light: '#efebe9', // Light Beige
-                highlight: '#fff8e1', // Soft Yellow for text
+                bg: '#f4f1ea',
+                dark: '#2c1810',
+                primary: '#5d4037',
+                gold: '#d4af37',
+                light: '#efebe9'
               }
             },
             fontFamily: {
               serif: ['Merriweather', 'serif'],
               display: ['Cinzel', 'serif'],
-              sans: ['Lato', 'sans-serif'],
             }
           }
         }
       }
     </script>
-    <link rel="manifest" href="/manifest.json">
-<script type="importmap">
+  <script type="importmap">
 {
   "imports": {
-    "react": "https://esm.sh/react@^19.2.1",
-    "react-dom/": "https://esm.sh/react-dom@^19.2.1/",
-    "react/": "https://esm.sh/react@^19.2.1/",
-    "vite": "https://esm.sh/vite@^7.2.7",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "vite": "https://esm.sh/vite@^7.3.1",
     "@vitejs/plugin-react": "https://esm.sh/@vitejs/plugin-react@^5.1.2"
   }
 }
 </script>
 </head>
-  <body class="bg-[#f4f1ea] text-[#2c1810] antialiased">
+  <body class="bg-[#f4f1ea] text-[#2c1810] selection:bg-jose-gold selection:text-jose-dark">
     <div id="root"></div>
-    <!-- ESTA LINHA É CRUCIAL PARA A VERCEL RODAR O APP -->
     <script type="module" src="/index.tsx"></script>
-    
-    <script>
-      if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/service-worker.js')
-            .then(reg => console.log('SW registered!', reg))
-            .catch(err => console.log('SW failed', err));
-        });
-      }
-    </script>
   </body>
 </html>
