@@ -83,100 +83,114 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ chapter, onNext, onPre
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [chapter.id]);
 
+  // Função para limpar o título se ele repetir "Capítulo X:"
+  const displayTitle = chapter.title.includes(':') ? chapter.title.split(':')[1].trim() : chapter.title;
+  const chapterPrefix = chapter.title.includes(':') ? chapter.title.split(':')[0].trim() : `CAPÍTULO ${chapter.id}`;
+
   return (
     <div className="min-h-screen pb-24 md:pb-40 bg-[#f4f1ea] selection:bg-jose-gold/30">
-      {/* Hero Section Adaptável */}
-      <div className="relative h-[60vh] md:h-[85vh] w-full overflow-hidden">
+      {/* Hero Section Refinada */}
+      <div className="relative h-[45vh] md:h-[75vh] w-full overflow-hidden">
         <img 
           src={chapter.image} 
           alt={chapter.title} 
-          className="w-full h-full object-cover grayscale-[0.1] contrast-110"
+          className="w-full h-full object-cover contrast-[1.15] brightness-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#f4f1ea] via-[#f4f1ea]/30 to-black/80"></div>
+        {/* Gradiente mais suave para não lavar a imagem no mobile */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#f4f1ea] via-black/10 to-black/60"></div>
         
         <button 
           onClick={onBack}
-          className="absolute top-6 left-6 md:top-10 md:left-10 z-50 flex items-center gap-2 text-white font-display text-[10px] md:text-xs tracking-[0.3em] hover:text-jose-gold transition-all"
+          className="absolute top-5 left-5 md:top-10 md:left-10 z-50 flex items-center gap-2 text-white font-display text-[9px] md:text-xs tracking-[0.3em] hover:text-jose-gold transition-all bg-black/20 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/10"
         >
           <span>←</span> ÍNDICE
         </button>
 
-        <div className="absolute bottom-10 md:bottom-20 left-0 w-full px-6 md:px-20">
+        <div className="absolute bottom-6 md:bottom-16 left-0 w-full px-6 md:px-20">
           <div className="max-w-5xl mx-auto">
-            <span className="text-jose-gold font-display font-bold tracking-[0.4em] text-[10px] md:text-sm uppercase mb-3 md:mb-6 block drop-shadow-lg">
-              Estudo de Caso • Cap. {chapter.id}
-            </span>
-            <h1 className="text-3xl md:text-7xl font-display text-jose-dark mb-3 md:mb-6 leading-tight uppercase drop-shadow-sm">
-              {chapter.title}
+            <div className="flex flex-wrap items-center gap-2 mb-2 md:mb-4">
+               <span className="bg-jose-gold text-jose-dark font-display font-bold tracking-widest text-[8px] md:text-xs px-2 py-0.5 rounded-sm">
+                 ESTUDO DE CASO
+               </span>
+               <span className="text-white/80 font-display text-[8px] md:text-xs tracking-widest uppercase">
+                 {chapterPrefix}
+               </span>
+            </div>
+            
+            <h1 className="text-2xl md:text-7xl font-display text-jose-dark md:text-white mb-2 md:mb-6 leading-tight uppercase drop-shadow-md">
+              {displayTitle}
             </h1>
-            <p className="text-sm md:text-2xl font-serif italic text-jose-primary max-w-2xl border-l-2 border-jose-gold pl-4 py-1">
-              {chapter.subtitle}
-            </p>
+            
+            <div className="max-w-xl border-l-2 border-jose-gold pl-3 md:pl-6 py-0.5">
+              <p className="text-[11px] md:text-xl font-serif italic text-jose-primary md:text-white/90 leading-snug">
+                {chapter.subtitle}
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="max-w-4xl mx-auto px-5 md:px-0 -mt-10 md:-mt-20 relative z-10">
-        {/* Bloco de Versículo Moderno */}
-        <div className="bg-white p-8 md:p-20 shadow-xl border-t-[8px] md:border-t-[12px] border-jose-dark text-center mb-16 md:mb-24 rounded-b-sm">
-          <p className="text-xl md:text-3xl font-serif text-jose-dark leading-[1.6] italic mb-8 opacity-90">
+      <div className="max-w-4xl mx-auto px-5 md:px-0 -mt-6 md:-mt-12 relative z-10">
+        {/* Bloco de Versículo com escala ajustada */}
+        <div className="bg-white p-6 md:p-20 shadow-xl border-t-[6px] md:border-t-[12px] border-jose-dark text-center mb-12 md:mb-24 rounded-sm">
+          <p className="text-lg md:text-3xl font-serif text-jose-dark leading-[1.7] italic mb-6 md:mb-8 opacity-90">
             "{chapter.verse}"
           </p>
           <div className="flex items-center justify-center gap-3">
-            <div className="w-8 h-[1px] bg-jose-gold"></div>
-            <p className="text-jose-primary font-display font-bold tracking-[0.3em] text-[10px] md:text-sm uppercase">
+            <div className="w-6 h-[1px] bg-jose-gold/50"></div>
+            <p className="text-jose-primary font-display font-bold tracking-[0.25em] text-[9px] md:text-sm uppercase">
               {chapter.verseReference}
             </p>
-            <div className="w-8 h-[1px] bg-jose-gold"></div>
+            <div className="w-6 h-[1px] bg-jose-gold/50"></div>
           </div>
         </div>
 
-        {/* Conteúdo Dinâmico */}
+        {/* Conteúdo do Estudo */}
         <div className="article-body">
           {chapter.sections.map((section, idx) => (
             <RenderSection key={idx} section={section} index={idx} />
           ))}
         </div>
 
-        {/* Oração com Efeito Visual */}
-        <div className="mt-20 md:mt-32 p-10 md:p-20 bg-jose-dark text-white rounded-sm shadow-2xl relative overflow-hidden group">
-           <div className="absolute top-0 right-0 w-48 h-48 bg-jose-gold/5 rounded-full -mr-24 -mt-24"></div>
+        {/* Oração Ativação */}
+        <div className="mt-16 md:mt-32 p-8 md:p-20 bg-jose-dark text-white rounded-sm shadow-2xl relative overflow-hidden group">
+           <div className="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-jose-gold/5 rounded-full -mr-16 -mt-16"></div>
            <div className="relative z-10 text-center">
-             <span className="text-jose-gold font-display text-3xl md:text-5xl mb-6 md:mb-10 block">🙏</span>
-             <h4 className="font-display text-sm md:text-xl tracking-[0.4em] mb-8 text-jose-gold uppercase opacity-80">Ativação Espiritual</h4>
-             <p className="text-lg md:text-3xl font-serif italic leading-relaxed text-jose-light max-w-3xl mx-auto">
+             <span className="text-jose-gold font-display text-2xl md:text-5xl mb-6 md:mb-10 block">🙏</span>
+             <h4 className="font-display text-[10px] md:text-xl tracking-[0.4em] mb-6 md:mb-8 text-jose-gold uppercase opacity-70">Ativação de Governo</h4>
+             <p className="text-base md:text-3xl font-serif italic leading-relaxed text-jose-light max-w-3xl mx-auto opacity-95">
                "{chapter.prayer}"
              </p>
            </div>
         </div>
 
-        {/* Navegação Mobile-First */}
-        <div className="mt-20 md:mt-32 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-jose-dark/10 pt-12">
+        {/* Navegação Refinada */}
+        <div className="mt-16 md:mt-32 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-jose-dark/10 pt-10">
            <div className="flex items-center justify-between w-full md:w-auto md:gap-12">
              <button 
                onClick={onPrev} 
                disabled={!hasPrev}
-               className={`flex flex-col items-start gap-1 ${!hasPrev ? 'opacity-0' : 'active:scale-95 transition-all'}`}
+               className={`flex flex-col items-start gap-1 ${!hasPrev ? 'opacity-0 pointer-events-none' : 'active:scale-95 transition-all'}`}
              >
-               <span className="text-[10px] text-jose-gold font-display tracking-widest uppercase">Anterior</span>
-               <span className="text-jose-primary font-display font-bold text-sm md:text-lg">← CAP. {chapter.id - 1}</span>
+               <span className="text-[9px] text-jose-gold font-display tracking-widest uppercase">Anterior</span>
+               <span className="text-jose-primary font-display font-bold text-xs md:text-lg">← CAP. {chapter.id - 1}</span>
              </button>
 
              <button 
                onClick={onNext} 
                disabled={!hasNext}
-               className={`md:hidden flex flex-col items-end gap-1 ${!hasNext ? 'opacity-0' : 'active:scale-95 transition-all'}`}
+               className={`md:hidden flex flex-col items-end gap-1 ${!hasNext ? 'opacity-0 pointer-events-none' : 'active:scale-95 transition-all'}`}
              >
-               <span className="text-[10px] text-jose-gold font-display tracking-widest uppercase">Próximo</span>
-               <span className="text-jose-primary font-display font-bold text-sm">CAP. {chapter.id + 1} →</span>
+               <span className="text-[9px] text-jose-gold font-display tracking-widest uppercase">Próximo</span>
+               <span className="text-jose-primary font-display font-bold text-xs">CAP. {chapter.id + 1} →</span>
              </button>
            </div>
            
-           <div className="flex flex-col items-center flex-1 max-w-xs w-full">
+           <div className="flex flex-col items-center flex-1 max-w-[180px] md:max-w-xs w-full">
               <div className="w-full h-[1px] bg-gray-200 relative mb-2">
-                 <div className="bg-jose-gold h-full transition-all duration-700" style={{ width: `${(chapter.id / 50) * 100}%` }}></div>
+                 <div className="bg-jose-gold h-full transition-all duration-700 shadow-[0_0_5px_rgba(212,175,55,0.5)]" style={{ width: `${(chapter.id / 50) * 100}%` }}></div>
               </div>
-              <span className="font-display text-[10px] tracking-widest text-jose-gold font-bold uppercase">{chapter.id} de 50</span>
+              <span className="font-display text-[8px] md:text-[10px] tracking-widest text-jose-gold/60 font-bold uppercase">{chapter.id} / 50 LIÇÕES</span>
            </div>
 
            <button 
@@ -186,7 +200,7 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ chapter, onNext, onPre
            >
              <span className="text-jose-gold font-display text-[10px] tracking-widest uppercase">Avançar</span>
              <span className="font-display font-bold text-lg flex items-center gap-2">
-               {hasNext ? `CAPÍTULO ${chapter.id + 1}` : 'CONCLUIR'} <span>→</span>
+               {hasNext ? `PRÓXIMO NÍVEL` : 'CONCLUIR'} <span>→</span>
              </span>
            </button>
         </div>
