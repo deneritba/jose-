@@ -7,8 +7,18 @@ const SAFE_THEMES = {
   DESERTO: "https://images.unsplash.com/photo-1544967082-d9d25d867d66?auto=format&fit=crop&q=80",
   PRISAO: "https://images.unsplash.com/photo-1592504868979-43a99252069e?auto=format&fit=crop&q=80",
   FARTURA: "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80",
-  EGITO: "https://images.unsplash.com/photo-1599668045963-c35d4872cb04?auto=format&fit=crop&q=80"
+  EGITO: "https://images.unsplash.com/photo-1599668045963-c35d4872cb04?auto=format&fit=crop&w=1000&q=80"
 };
+
+const IMG_CH_1_TO_10 = "https://zygyapadihekebhhbges.supabase.co/storage/v1/object/sign/jose%20do%20egito/1ao10.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85NDUyOTA3Yi0zMWRmLTQ2ZTMtOTA4NS03OGQ4MjdmYmIyMmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJqb3NlIGRvIGVnaXRvLzFhbzEwLnBuZyIsImlhdCI6MTc2ODM5Mjk3NCwiZXhwIjoyMDUyMjE2OTc0fQ.2qTaoIlqhB67NxK1N89urdoudkBSoC3GJUMKNb3iL2A";
+
+const IMG_CH_11_TO_20 = "https://zygyapadihekebhhbges.supabase.co/storage/v1/object/sign/jose%20do%20egito/11ao20.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85NDUyOTA3Yi0zMWRmLTQ2ZTMtOTA4NS03OGQ4MjdmYmIyMmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJqb3NlIGRvIGVnaXRvLzExYW8yMC5wbmciLCJpYXQiOjE3NjgzOTMxOTQsImV4cCI6MjA1MjIxNzE5NH0.4ktMssp1SRUnF7WtVGUwTIWPWGdGYC1Z-guySgDykxk";
+
+const IMG_CH_21_TO_30 = "https://zygyapadihekebhhbges.supabase.co/storage/v1/object/sign/jose%20do%20egito/21ao30.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85NDUyOTA3Yi0zMWRmLTQ2ZTMtOTA4NS03OGQ4MjdmYmIyMmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJqb3NlIGRvIGVnaXRvLzIxYW8zMC5wbmciLCJpYXQiOjE3NjgzOTMzMDUsImV4cCI6MjA1MjIxNzMwNX0.zLxzZxzO2iu7OcOLqe98RCeq-rruk6lMChzNEybVeQk";
+
+const IMG_CH_31_TO_40 = "https://zygyapadihekebhhbges.supabase.co/storage/v1/object/sign/jose%20do%20egito/31ao40.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85NDUyOTA3Yi0zMWRmLTQ2ZTMtOTA4NS03OGQ4MjdmYmIyMmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJqb3NlIGRvIGVnaXRvLzMxYW80MC5wbmciLCJpYXQiOjE3NjgzOTM0NjUsImV4cCI6MjA1MjIxNzQ2NX0.l7_CyO62f9TBYWZQbaAvmEAxg-O_Odi5_EgDfUD22ns";
+
+const IMG_CH_41_TO_50 = "https://zygyapadihekebhhbges.supabase.co/storage/v1/object/sign/jose%20do%20egito/41ao50.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85NDUyOTA3Yi0zMWRmLTQ2ZTMtOTA4NS03OGQ4MjdmYmIyMmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJqb3NlIGRvIGVnaXRvLzQxYW81MC5wbmciLCJpYXQiOjE3NjgzOTM2MDYsImV4cCI6MjA1MjIxNzYwNn0.aXn-H_LIfZ3b2WY0BKi1F9gQs5bE07sA8YhMkhWj1N4";
 
 const generateHyperRobustChapters = (): Chapter[] => {
   const chapters: Chapter[] = [];
@@ -19,7 +29,7 @@ const generateHyperRobustChapters = (): Chapter[] => {
       subtitle: "Marca Pessoal, Identidade e o Peso da Diferenciação",
       verse: "Ora, Israel amava a José mais do que a todos os seus filhos... e fez-lhe uma túnica de várias cores.",
       ref: "Gênesis 37:3",
-      img: "https://zygyapadihekebhhbges.supabase.co/storage/v1/object/sign/jose%20do%20egito/crie_uma_imagem_ilustrativa_em_estilo_b_blico.jpeg?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85NDUyOTA3Yi0zMWRmLTQ2ZTMtOTA4NS03OGQ4MjdmYmIyMmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJqb3NlIGRvIGVnaXRvL2NyaWVfdW1hX2ltYWdlbV9pbHVzdHJhdGl2YV9lbV9lc3RpbG9fYl9ibGljby5qcGVnIiwiaWF0IjoxNzY4MzQ3NTE4LCJleHAiOjE5MjYwMjc1MTh9.WqR8rGsuW6QG54926BHqG8vuceuzoWRNccoxV1_MSEA",
+      img: IMG_CH_1_TO_10,
       intro: "A túnica de José não era apenas um agasalho; no hebraico 'ketonet passim', ela simbolizava uma vestimenta de realeza ou de alguém que não exercia trabalho braçal. Ao entregar essa túnica, Jacó não estava apenas dando um presente, estava alterando a hierarquia sucessória da maior família daquela região. Este capítulo analisa como a sua 'túnica' (sua marca e propósito) pode ser o gatilho tanto para o seu sucesso quanto para a perseguição que você enfrentará.",
       theology: "No plano teológico, a túnica representa a eleição soberana. Assim como Cristo foi revestido de glória, José foi revestido de um favor que ele não comprou, mas recebeu. Estudiosos sugerem que as 'várias cores' indicavam uma técnica de tecelagem complexa disponível apenas para a elite de Canaã. Isso nos ensina que o favor de Deus muitas vezes nos coloca em evidência antes mesmo de estarmos prontos para o palco, exigindo uma maturidade emocional que José ainda estava por desenvolver.",
       management: "Sob a ótica da gestão, a túnica é o que chamamos hoje de 'Unique Selling Proposition' (Proposta Única de Valor). Se você é igual a todos, você é uma commodity. José foi diferenciado pela marca que seu pai lhe impôs. A lição aqui é sobre 'Gestão de Stakeholders': Jacó falhou ao não comunicar a estratégia por trás da escolha, gerando um clima organizacional tóxico entre os irmãos. Para líderes, o favoritismo sem meritocracia clara é o veneno que destrói equipes.",
@@ -34,9 +44,9 @@ const generateHyperRobustChapters = (): Chapter[] => {
       subtitle: "Visão Estratégica e a Antecipação de Cenários Futuros",
       verse: "Ouvi, peço-vos, este sonho que tenho sonhado: Eis que estávamos atando molhos no meio do campo...",
       ref: "Gênesis 37:6-7",
-      img: "https://zygyapadihekebhhbges.supabase.co/storage/v1/object/sign/jose%20do%20egito/Gemini_Generated_Image_hojypihojypihojy.png?token=eyJraWQiOiJzdG9yYWdlLXVybC1zaWduaW5nLWtleV85NDUyOTA3Yi0zMWRmLTQ2ZTMtOTA4NS03OGQ4MjdmYmIyMmYiLCJhbGciOiJIUzI1NiJ9.eyJ1cmwiOiJqb3NlIGRvIGVnaXRvL0dlbWluaV9HZW5lcmF0ZWRfSW1hZ2VfaG9qeXBpaG9qeXBpaG9qeS5wbmciLCJpYXQiOjE3NjgzODYwNjEsImV4cCI6MjA1MjIxMDA2MX0.X8xr87PMiWh7sRkbRdW_-j_6Bn8CmjBzXpMguWsCcP0",
+      img: IMG_CH_1_TO_10,
       intro: "Sonhar não é um ato passivo; para José, os sonhos eram downloads de inteligência estratégica. O primeiro sonho envolvia produtividade agrícola (molhos de trigo), e o segundo, cosmologia e política (astros). José estava recebendo o plano de negócios da sua vida antes mesmo de ter um emprego. Este capítulo mergulha na necessidade de ter uma visão que vá além do horizonte visível e como gerenciar essa visão sem se tornar um alvo fácil.",
-      theology: "Biblicamente, o sonho de José é a confirmação do Pacto Abraâmico se desdobrando em uma escala individual. Enquanto seus irmãos viam apenas o dia a dia do pastoreio, José via a economia do trigo. O trigo seria o que salvaria o mundo da fome anos depois. Isso nos mostra que Deus nos dá lampejos do fim para que tenhamos força para suportar o meio. A teologia aqui é a da Providência: nada é por acaso, e a visão é o combustível da perseverança.",
+      theology: "Biblicamente, o sonho de José é a confirmação do Pacto Abraâmico se desdobrando em uma escala individual. Enquanto seus irmãos viam apenas o dia a dia do pastoreio, José via a economia do trigo. O trigo seria o que salvaria o world da fome anos depois. Isso nos mostra que Deus nos dá lampejos do fim para que tenhamos força para suportar o meio. A teologia aqui é a da Providência: nada é por acaso, e a visão é o combustível da perseverança.",
       management: "Em termos de governança, José cometeu um erro clássico: 'Over-sharing' (compartilhamento excessivo). Ele entregou a visão para quem não tinha interesse no sucesso dele. Líderes precisam entender o conceito de 'Segmentação de Informação'. Nem todo mundo que senta à sua mesa tem estômago para ouvir sobre o seu banquete futuro. A visão estratégica exige um ambiente de confiança que José ainda não possuía. Aprenda a escrever sua visão e guardá-la até encontrar os conselheiros certos.",
       finance: "Financeiramente, o sonho com os molhos de trigo trata de 'Escalabilidade'. José viu o trigo dele se levantando enquanto os outros se curvavam. Isso aponta para a criação de sistemas de renda que trabalham por você. O trigo representa o sustento e a moeda de troca da época. A lição financeira é: pare de focar apenas no pastoreio (trabalho braçal imediato) e comece a plantar seus próprios molhos (sistemas de renda passiva).",
       lesson: "A distância entre o seu sonho e a sua realidade é chamada de 'Processo'. O erro de José foi achar que o sonho era para o dia seguinte. Sonhos grandes exigem preparações grandes. Se o seu sonho assusta as pessoas ao seu redor, talvez ele seja grande o suficiente. O segredo é ter a visão de um gigante, mas a disciplina de um servo.",
@@ -49,7 +59,7 @@ const generateHyperRobustChapters = (): Chapter[] => {
       subtitle: "Resiliência Psicológica no Ponto de Ruptura",
       verse: "E viram-no de longe... e conspiraram contra ele para o matarem.",
       ref: "Gênesis 37:18",
-      img: SAFE_THEMES.DESERTO,
+      img: IMG_CH_1_TO_10,
       intro: "De filho favorito a vítima de uma tentativa de fratricídio. José foi despido de sua túnica e lançado em um poço seco. O trauma da traição familiar é um dos mais profundos que o ser humano pode enfrentar. Como manter a sanidade quando aqueles que deveriam te proteger são os que te atacam? Este capítulo explora a gestão emocional em tempos de crise aguda e o poder de ressignificar a dor.",
       theology: "O poço vazio é o símbolo do 'deserto' bíblico. É o lugar onde todas as muletas externas são removidas para que reste apenas a dependência de Deus. A ausência de água no poço foi uma misericórdia divina (ele não morreu afogado), mas a presença do silêncio foi o teste. Jesus também foi traído pelos Seus e despojado de Suas vestes. José vive aqui sua primeira 'morte' simbólica para que possa nascer como o governador.",
       management: "Gestão de Adversidade: No mundo corporativo, você enfrentará conspirações. A lição de José é sobre o 'Locus de Controle'. Ele não podia controlar o que seus irmãos faziam, mas podia controlar sua resposta. Quando você é jogado em um 'poço' (uma demissão injusta, uma quebra de contrato), sua primeira tarefa não é sair dele, mas não permitir que o poço entre em você. A sobrevivência depende da manutenção da sua integridade interna.",
@@ -79,12 +89,26 @@ const generateHyperRobustChapters = (): Chapter[] => {
       ];
       
       const theme = themes[i % themes.length];
+      
+      let chapterImg;
+      if (i <= 10) {
+        chapterImg = IMG_CH_1_TO_10;
+      } else if (i <= 20) {
+        chapterImg = IMG_CH_11_TO_20;
+      } else if (i <= 30) {
+        chapterImg = IMG_CH_21_TO_30;
+      } else if (i <= 40) {
+        chapterImg = IMG_CH_31_TO_40;
+      } else {
+        chapterImg = IMG_CH_41_TO_50;
+      }
+      
       content = {
         title: `Capítulo ${i}: ${theme.t}`,
         subtitle: theme.s,
         verse: "O Senhor era com José, e tudo o que ele fazia o Senhor prosperava.",
         ref: `Gênesis ${theme.r}`,
-        img: i % 2 === 0 ? SAFE_THEMES.EGITO : SAFE_THEMES.PRISAO,
+        img: chapterImg,
         intro: `Neste capítulo ${i}, avançamos na jornada de José para entender como a resiliência aplicada se transforma em autoridade política. A trajetória de José nos prova que o sucesso não é um evento isolado, mas uma sucessão de comportamentos íntegros em ambientes desfavoráveis. Estudaremos como ele transformou a casa de um oficial egípcio em um modelo de eficiência administrativa.`,
         theology: "A teologia da 'Presença Imunizante': José estava no Egito, um lugar de idolatria, mas a presença de Deus o tornava imune à decadência moral ao seu redor. Isso nos ensina que o cristão não deve fugir do mundo, mas influenciá-lo através da excelência. A bênção de Deus sobre José transbordava para Potifar, revelando que o favor divino é um agente de transformação social e econômica.",
         management: "Administração por Objetivos (APO): José não esperava ordens; ele antecipava necessidades. Potifar 'não sabia de nada do que tinha, senão do pão que comia'. Isso é o ápice da confiança delegada. Se você quer crescer na sua carreira, torne-se tão confiável que seu superior não precise mais se preocupar com os detalhes operacionais. A microgestão morre onde a integridade nasce.",
