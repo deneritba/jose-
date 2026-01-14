@@ -79,7 +79,6 @@ const RenderSection: React.FC<{ section: ContentSection, index: number }> = ({ s
 };
 
 export const ChapterView: React.FC<ChapterViewProps> = ({ chapter, onNext, onPrev, hasPrev, hasNext, onBack }) => {
-  // Use React prefix for useEffect as it is accessed through the namespace
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [chapter.id]);
@@ -90,12 +89,14 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ chapter, onNext, onPre
   return (
     <div className="min-h-screen pb-24 md:pb-40 bg-[#f4f1ea] selection:bg-jose-gold/30">
       <div className="relative h-[45vh] md:h-[75vh] w-full overflow-hidden">
-        {/* Ajuste de escala e posicionamento para remover artefatos de texto da imagem no mobile */}
+        {/* Imagem com enquadramento padrão agora que a versão corrigida foi fornecida */}
         <img 
           src={chapter.image} 
           alt={chapter.title} 
-          className="w-full h-full object-cover object-top contrast-[1.15] brightness-90 scale-110 md:scale-100 origin-top transition-transform duration-700"
+          className="w-full h-full object-cover object-top contrast-[1.1] brightness-90 transition-transform duration-700"
         />
+        
+        {/* Overlays para profundidade e legibilidade */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#f4f1ea] via-black/10 to-black/60"></div>
         
         <button 
