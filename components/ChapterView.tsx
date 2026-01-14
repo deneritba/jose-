@@ -1,4 +1,4 @@
-
+// Added React import to fix namespace and name errors
 import React from 'react';
 import { Chapter, ContentSection } from '../types';
 
@@ -79,24 +79,23 @@ const RenderSection: React.FC<{ section: ContentSection, index: number }> = ({ s
 };
 
 export const ChapterView: React.FC<ChapterViewProps> = ({ chapter, onNext, onPrev, hasPrev, hasNext, onBack }) => {
+  // Use React prefix for useEffect as it is accessed through the namespace
   React.useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, [chapter.id]);
 
-  // Função para limpar o título se ele repetir "Capítulo X:"
   const displayTitle = chapter.title.includes(':') ? chapter.title.split(':')[1].trim() : chapter.title;
   const chapterPrefix = chapter.title.includes(':') ? chapter.title.split(':')[0].trim() : `CAPÍTULO ${chapter.id}`;
 
   return (
     <div className="min-h-screen pb-24 md:pb-40 bg-[#f4f1ea] selection:bg-jose-gold/30">
-      {/* Hero Section Refinada */}
       <div className="relative h-[45vh] md:h-[75vh] w-full overflow-hidden">
+        {/* Ajuste de escala e posicionamento para remover artefatos de texto da imagem no mobile */}
         <img 
           src={chapter.image} 
           alt={chapter.title} 
-          className="w-full h-full object-cover contrast-[1.15] brightness-90"
+          className="w-full h-full object-cover object-top contrast-[1.15] brightness-90 scale-110 md:scale-100 origin-top transition-transform duration-700"
         />
-        {/* Gradiente mais suave para não lavar a imagem no mobile */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#f4f1ea] via-black/10 to-black/60"></div>
         
         <button 
@@ -131,7 +130,6 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ chapter, onNext, onPre
       </div>
 
       <div className="max-w-4xl mx-auto px-5 md:px-0 -mt-6 md:-mt-12 relative z-10">
-        {/* Bloco de Versículo com escala ajustada */}
         <div className="bg-white p-6 md:p-20 shadow-xl border-t-[6px] md:border-t-[12px] border-jose-dark text-center mb-12 md:mb-24 rounded-sm">
           <p className="text-lg md:text-3xl font-serif text-jose-dark leading-[1.7] italic mb-6 md:mb-8 opacity-90">
             "{chapter.verse}"
@@ -145,14 +143,12 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ chapter, onNext, onPre
           </div>
         </div>
 
-        {/* Conteúdo do Estudo */}
         <div className="article-body">
           {chapter.sections.map((section, idx) => (
             <RenderSection key={idx} section={section} index={idx} />
           ))}
         </div>
 
-        {/* Oração Ativação */}
         <div className="mt-16 md:mt-32 p-8 md:p-20 bg-jose-dark text-white rounded-sm shadow-2xl relative overflow-hidden group">
            <div className="absolute top-0 right-0 w-32 h-32 md:w-64 md:h-64 bg-jose-gold/5 rounded-full -mr-16 -mt-16"></div>
            <div className="relative z-10 text-center">
@@ -164,7 +160,6 @@ export const ChapterView: React.FC<ChapterViewProps> = ({ chapter, onNext, onPre
            </div>
         </div>
 
-        {/* Navegação Refinada */}
         <div className="mt-16 md:mt-32 flex flex-col md:flex-row justify-between items-center gap-8 border-t border-jose-dark/10 pt-10">
            <div className="flex items-center justify-between w-full md:w-auto md:gap-12">
              <button 
